@@ -20,7 +20,7 @@ class TodosController < ApplicationController
   def create
     the_todo = Todo.new
     the_todo.content = params.fetch("query_content")
-    the_todo.status = params.fetch("query_status")
+
     the_todo.user_id = params.fetch("query_user_id")
 
     if the_todo.valid?
@@ -36,14 +36,13 @@ class TodosController < ApplicationController
     the_todo = Todo.where({ :id => the_id }).at(0)
 
     the_todo.content = params.fetch("query_content")
-    the_todo.status = params.fetch("query_status")
     the_todo.user_id = params.fetch("query_user_id")
 
-    if the_todo.valid?
-      the_todo.save
-      redirect_to("/todos/#{the_todo.id}", { :notice => "Todo updated successfully."} )
-    else
-      redirect_to("/todos/#{the_todo.id}", { :alert => the_todo.errors.full_messages.to_sentence })
+    if @the_todo.valid?
+      @the_todo.save
+      redirect_to("/todos")
+    # else
+    #   redirect_to("/todos/#{the_todo.id}", { :alert => the_todo.errors.full_messages.to_sentence })
     end
   end
 
@@ -53,6 +52,6 @@ class TodosController < ApplicationController
 
     the_todo.destroy
 
-    redirect_to("/todos", { :notice => "Todo deleted successfully."} )
+    redirect_to("/todos")
   end
 end
