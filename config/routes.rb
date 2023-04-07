@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # get("/:path_id", { :controller => "todos", :action => "show" })
 
   # UPDATE
-  post("/modify_todo/:path_id", { :controller => "todos", :action => "update" })
+ post("/modify_todo/:path_id", { :controller => "todos", :action => "update" })
 
   # DELETE
   get("/delete_todo/:path_id", { :controller => "todos", :action => "destroy" })
