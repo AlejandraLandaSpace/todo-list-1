@@ -2,7 +2,6 @@ class TodosController < ApplicationController
   def index
     matching_todos = Todo.all
     @list_of_todos = matching_todos.order({:created_at =>:desc})
-    # @a_todo = @list_of_todos.at(0)
   end
 
   def create
@@ -21,9 +20,7 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:path_id])
-    # @todo = Todo.where({id: the_id}).at(0)
     current_stat = params.fetch("query_status")
-    # @todo.content = params.fetch("query_content")
     @todo.status=current_stat
     @todo.save
     redirect_to("/")
